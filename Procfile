@@ -1,1 +1,1 @@
-worker: node bot.js CenBot
+worker: node bot.js
