@@ -6,16 +6,17 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'stats') {
-    	message.channel.send('Stats');
+    if (message.content === '!help') {
+    	message.channel.send('Discord Bot Commands');
+        message.channel.send('!fornitestats <player>: Displays stats of a specific player.');
   	}
 });
 
 client.on('message', message => {
-    if (message.content === 'bing') {
-    	message.reply('BONG!');
+    if (message.content === '!fortnitestats') {
+        let player = args[0]
+    	message.reply('${player}'s Stats: https://fortnitetracker.com/profile/pc/${player}');
   	}
 });
 
-// THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
