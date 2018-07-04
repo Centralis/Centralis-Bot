@@ -1,7 +1,7 @@
 {
-  "name": "Centralis-Bot",
+  "name": "CenBot",
   "version": "1.0.0",
-  "description": "Centralis' Discord Bot",
+  "description": "",
   "main": "bot.js",
   "scripts": {
       "start": "node bot.js"
