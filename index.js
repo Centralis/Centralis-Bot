@@ -19,9 +19,17 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  if(command === "leaderboards") {
-    message.channel.send("Leaderboards:");
-    message.channel.send("1. Centralis");
+  if(command === "snipe") {
+    message.channel.send("```Snipe Match Launching");
+    message.channel.send("Starting in...");
+    message.channel.send("3");
+    message.channel.send("2");
+    message.channel.send("1");
+    message.channel.send("Queue```");
+    const channel = message.member.voiceChannel;
+    channel.join()
+    .then(connection => console.log('Connected!'))
+    .catch(console.error);
   }
 });
 
