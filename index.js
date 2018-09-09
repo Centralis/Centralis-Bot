@@ -25,6 +25,7 @@ client.on("message", async message => {
     channel.join()
     .then(connection => console.log('Connected!'))
     .catch(console.error);
+    connection.play('https://www.youtube.com/watch?v=wbBh5EVtYkY&list=PLIRIN0UaibSTnCdeuuQ7_ibYczgmJeaKQ&index=3');
   }
 });
 
