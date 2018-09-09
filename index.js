@@ -29,7 +29,7 @@ var c = 40;
 
 setInterval(function () {
     c = c - 1;
-
+    message.channel.send("" + c);
     if (c == 0) {
     console.log("Timer Done!")
     return;
