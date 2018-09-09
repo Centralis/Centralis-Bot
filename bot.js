@@ -1,29 +1,71 @@
-const Discord = require("discord.js");
+var Discord = require('discord.io');
+var logger = require('winston');
+var auth = require('./auth.json');
 
-const client = new Discord.Client();
-
-const config = require("./config.json");
-
-client.on("ready", () => {
-  console.log(`CenBot is now online.`); 
-  client.user.setActivity(`Use !schedule for upcoming dates`);
+//Configure logger settings.
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+    colorize:true
 });
 
+logger.level = 'debug';
 
-client.on("message", async message => {
-  if(message.author.bot) return;
-
-  if(message.content.indexOf(config.prefix) !== 0) return;
-  
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  
-  if(command === "schedule") {
-    // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
-    // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
-    const m = await message.channel.send("schedule?");
-    m.edit(`The next tournament is scheduled for July 7th from 12 PM EST - 4 PM EST.`);
-  }
+//Initialize the bot
+var bot = new Discord.Client({
+    token: auth.token,
+    autorun:true
 });
 
-client.login(config.token);
+bot.on('ready', function(evt){
+    logger.info('Connected');
+    logger.info('Logged in as: ');
+    logger.info(bot.username + ' - (' + bot.id + ')');
+});
+
+bot.on('message', function(user, userID, channelID, message, evt){
+    //Bot needs to know if it will execute a command.
+    //Bot will listen for messages that start with an '!'.
+    if(message.substring(0, 1) == '!'){
+        var args = message.substring(1).split(' ');
+        var cmd = args[0];
+
+        args = args.splice(1);
+        switch(cmd){
+            //!ping
+            case 'ping':
+                bot.sendMessage({
+                    to: channelID,
+                    message: "Hi, this is the tutorial bot!\nUse the command !tutcommands for all my commands!"
+                });
+            break;
+            //!tutcommands
+            case 'tutcommands':
+                bot.sendMessage({
+                    to: channelID,
+                    message: "My commands are:\n!ping\n!tutcommands\n!talk\n!yell\n!calm"
+                });
+            break;
+            //!talk
+            case 'talk':
+                bot.sendMessage({
+                    to: channelID,
+                    message: "Look at me! I'm talking!"
+                });
+            break;
+            //!yell
+            case 'yell':
+                bot.sendMessage({
+                    to: channelID,
+                    message: "I'M YELLING OKAY!!"
+                });
+            break;
+            //!calm
+            case 'calm':
+                bot.sendMessage({
+                        to: channelID,
+                        message: "Calm down, everything is going to be okay."
+                });
+            break;
+        }
+    }
+});
