@@ -25,9 +25,16 @@ client.on("message", async message => {
     channel.join()
     .then(connection => console.log('Connected!'))
     .catch(console.error);
-    connection.play(ytdl(
-  'https://www.youtube.com/watch?v=wbBh5EVtYkY&list=PLIRIN0UaibSTnCdeuuQ7_ibYczgmJeaKQ&index=3',
-  { filter: 'audioonly' }));
+var c = 40;
+
+setInterval(function () {
+    c = c - 1;
+
+    if (c == 0) {
+    console.log("Timer Done!")
+    return;
+    }
+}, 1000)
   }
 });
 
