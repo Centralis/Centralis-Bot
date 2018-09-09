@@ -25,16 +25,6 @@ client.on("message", async message => {
     channel.join()
     .then(connection => console.log('Connected!'))
     .catch(console.error);
-var c = 40;
-
-setInterval(function () {
-    c = c - 1;
-    message.channel.send("" + c);
-    if (c == 0) {
-    console.log("Timer Done!")
-    return;
-    }
-}, 1000)
   }
 });
 
