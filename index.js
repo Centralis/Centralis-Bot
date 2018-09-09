@@ -20,12 +20,7 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
   
   if(command === "snipe") {
-    message.channel.send("```Snipe Match Launching");
-    message.channel.send("Starting in...");
-    message.channel.send("3");
-    message.channel.send("2");
-    message.channel.send("1");
-    message.channel.send("Queue```");
+    message.channel.send("Snipe Match Launching!");
     const channel = message.member.voiceChannel;
     channel.join()
     .then(connection => console.log('Connected!'))
