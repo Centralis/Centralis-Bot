@@ -21,11 +21,11 @@ client.on("message", async message => {
   
   if(command === "snipe") {
     message.channel.send("Snipe Match Launching!");
-    const channel = message.member.voiceChannel;
-    channel.join()
-    .then(connection => console.log('Connected!'))
-    .catch(console.error);
-  }
+   voiceChannel = message.member.voiceChannel;
+
+voiceChannel.join().then(function (connection) {
+
+}
 });
 
 client.login(config.token);
