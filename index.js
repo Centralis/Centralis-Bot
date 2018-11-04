@@ -20,12 +20,7 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
   
   if(command === "snipe") {
-    message.channel.send("Snipe Match Launching!");
-   voiceChannel = message.member.voiceChannel;
-
-voiceChannel.join().then(function (connection) {
-
-}
+   message.channel.send("Snipe Match Launching!");
 });
 
 client.login(config.token);
